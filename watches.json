@@ -2,9 +2,34 @@
 {
   "watches": [
     {
-      "id": "kannadiga",
+      "id": "watch_new_1",
+      "name": "HMT Watch - First New Link",
+      "url": "https://www.hmtwatches.in/product_overview?id=eyJpdiI6ImduakpuUDZkRUZRQjJyNTBHd2NLb0E9PSIsInZhbHVlIjoiZmF4OGNnVWRydHgwUjNDbG5FYlYxQT09IiwibWFjIjoiZjAxODk0NWFkMjdmNTU4YTczMjRmZGY1NTc0NWNlMWFiMGZmYjg3NDU2Zjg1YzFjYzA2MjliMDIwMTM1MzhlMiIsInRhZyI6IiJ9"
+    },
+    {
+      "id": "kannadiga_jggl_01",
       "name": "HMT Kannadiga Gents JGGL 01",
       "url": "https://www.hmtwatches.in/product_overview?id=eyJpdiI6IlZ6aGtrNVJLMXo0d2liYm96THFTd3c9PSIsInZhbHVlIjoiOWkvT3FyUGhpUFRkSExkYklHbytMdz09IiwibWFjIjoiNWFhMmFlMWUxZTNkNjFiN2E2OGVjOGYxNjc5ZDhhMzViNTVlMjQzZjA2MDc2OWY5NzQ1OWMwNjgzN2YxNmQzNiIsInRhZyI6IiJ9"
+    },
+    {
+      "id": "kannadiga_jgsl_01",
+      "name": "HMT Kannadiga Gents JGSL 01",
+      "url": "https://www.hmtwatches.in/product_overview?id=eyJpdiI6IlJ1eGhhOHRVcUlYdTNWUHFTZ1RnT0E9PSIsInZhbHVlIjoiZFpndko3dXV2NjJYTXh4MzNpOTNoZz09IiwibWFjIjoiYzk2OTU3NzU2ZDhmYmRmNGIyNjA1OTA0MTczYWE3ZDc1ODNjZDgwYTJiNTZjN2I0NTlkNmNlNWYzOGVkZGQ2OCIsInRhZyI6IiJ9"
+    },
+    {
+      "id": "kannadiga_jgss_01",
+      "name": "HMT Kannadiga Gents JGSS 01",
+      "url": "https://www.hmtwatches.in/product_overview?id=eyJpdiI6Ik1Ub3VZMy9Bc3VmN2RSVXRqWFcvV2c9PSIsInZhbHVlIjoiUWxwNGFrNGZvb0hOY29kSnVDWTBXZz09IiwibWFjIjoiMWEwNjdkNjRjZjM1ZGVmZjM2ODc0NDRjMTk1OWM4MTkzMmMyZWNhM2NlN2Y1NThkNDliMzY4MDMzYjg4ZWZjMiIsInRhZyI6IiJ9"
+    },
+    {
+      "id": "kannadiga_jggg_01",
+      "name": "HMT Kannadiga Gents JGGG 01",
+      "url": "https://www.hmtwatches.in/product_overview?id=eyJpdiI6InM5cWM1MUFHczhWSC9TOGZndHNTMnc9PSIsInZhbHVlIjoid0hPLzllSXkyVkgyRHdLV3Z3eG5BUT09IiwibWFjIjoiMjg4ZmM5NDc5MjdhNzI1ZDUwMDljYWI5YTZlY2M0MTBjMjU2NDBlNDFlMjQzMWI2ZWM2MzZjNjliNzkzY2Q2MiIsInRhZyI6IiJ9"
+    },
+    {
+      "id": "stellar_dass_07_grey",
+      "name": "HMT Stellar DASS 07 Grey - Stock Test",
+      "url": "https://hmtwatches.in/product_overview?id=eyJpdiI6Ijl0QlR0T0d2UW82dWgyMmNtM0VCQVE9PSIsInZhbHVlIjoialczN1JQZUppaUZ0L3RlZVF5eEFkZz09IiwibWFjIjoiZmMxZjEwOWE4MGQ3MmY0MjVhZjc4OTQxNDIwOWFhMDA0ZTEyNTMzYjkxM2Q1YjYwZTNkNzZiY2EzYzdmNzdlYyIsInRhZyI6IiJ9"
     }
   ]
 }
