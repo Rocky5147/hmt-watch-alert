@@ -47,6 +47,10 @@ def load_watches():
     if len(ids) != len(set(ids)):
         raise RuntimeError("Every watch must have a unique ID.")
 
+    for watch in watches:
+        if not all(key in watch for key in ("id", "name", "url")):
+            raise RuntimeError("A watch is missing required information.")
+
     return watches
 
 
@@ -55,7 +59,12 @@ def load_state():
         return {"watches": {}}
 
     with STATE_FILE.open("r", encoding="utf-8") as file:
-        return json.load(file)
+        state = json.load(file)
+
+    if "watches" not in state:
+        raise RuntimeError("Invalid state.json format.")
+
+    return state
 
 
 def save_state(state):
@@ -82,7 +91,7 @@ def check_stock(url):
     soup = BeautifulSoup(response.text, "html.parser")
     page_text = soup.get_text(" ", strip=True).lower()
 
-    # Check unavailable phrases first.
+    # Check unavailable status first.
     unavailable = [
         r"\bout\s+of\s+stock\b",
         r"\bsold\s+out\b",
@@ -93,11 +102,13 @@ def check_stock(url):
         if re.search(pattern, page_text):
             return "OUT_OF_STOCK"
 
+    # Check available status.
     if re.search(r"\bin\s+stock\b", page_text):
         return "IN_STOCK"
 
+    # Never assume availability when status is unclear.
     raise RuntimeError(
-        "Stock status unclear. Website may have changed."
+        "Could not identify stock status on HMT website."
     )
 
 
@@ -115,23 +126,39 @@ def monitor_watch(watch, state):
 
     previous = state["watches"].get(watch_id)
 
-    print(f"Previous: {previous}")
-    print(f"Current: {current}")
+    print(f"Previous status: {previous}")
+    print(f"Current status: {current}")
 
-    if previous != "IN_STOCK" and current == "IN_STOCK":
+    # First-time monitoring.
+    if previous is None:
+
         send_telegram(
-            f"🚨 HMT WATCH BACK IN STOCK! 🚨\n\n"
-            f"Watch: {name}\n\n"
-            f"Status: AVAILABLE\n\n"
-            f"Buy now:\n{url}"
+            f"✅ HMT STOCK MONITORING STARTED\n\n"
+            f"Watch: {name}\n"
+            f"Current status: {current.replace('_', ' ')}\n\n"
+            f"Product link:\n{url}\n\n"
+            f"I will notify you when availability changes."
         )
 
+    # Watch becomes available.
+    elif previous != "IN_STOCK" and current == "IN_STOCK":
+
+        send_telegram(
+            f"🚨🚨 HMT WATCH BACK IN STOCK! 🚨🚨\n\n"
+            f"Watch: {name}\n\n"
+            f"Status: AVAILABLE!\n\n"
+            f"Purchase now:\n{url}"
+        )
+
+    # Watch becomes unavailable again.
     elif previous == "IN_STOCK" and current == "OUT_OF_STOCK":
+
         send_telegram(
             f"⚠️ HMT STOCK UPDATE\n\n"
             f"{name} is now OUT OF STOCK again."
         )
 
+    # Update individual watch history.
     state["watches"][watch_id] = current
 
     print(f"Completed: {name}")
@@ -157,12 +184,12 @@ def main():
     save_state(state)
 
     if errors:
-        raise RuntimeError(
+        print(
             "Some watches could not be checked: "
             + ", ".join(errors)
         )
 
-    print("\nAll HMT watches checked successfully.")
+    print("\nMonitoring cycle completed.")
 
 
 if __name__ == "__main__":
